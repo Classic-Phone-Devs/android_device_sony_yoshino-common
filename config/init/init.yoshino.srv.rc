@@ -78,13 +78,13 @@ service vendor.atfwd /vendor/bin/ATFWD-daemon
     writepid /dev/cpuset/system-background/tasks
 
 ### Peripheral Manager
-service per_mgr /vendor/bin/pm-service
+service vendor.per_mgr /vendor/bin/pm-service
     class core
     user system
     group system
     ioprio rt 4
 
-service per_proxy /vendor/bin/pm-proxy
+service vendor.per_proxy /vendor/bin/pm-proxy
     class core
     user system
     # Add oem_2993 to the group of charge_service for access MiscTA.
@@ -100,6 +100,11 @@ service qns /vendor/bin/qns -d /mnt/qns -l /mnt/qns
     group oem_2985
     socket qnsbsd stream 660 oem_2985 system
     disabled
+on property:init.svc.vendor.per_mgr=running
+    start vendor.per_proxy
+
+on shutdown
+    stop vendor.per_proxy
 
 ### CND
 service vendor.cnd /system/vendor/bin/cnd
@@ -251,6 +256,8 @@ service qcom-radio-sh /vendor/bin/init.qcom.radio.sh
     oneshot
 
 service vendor.atfwd /vendor/bin/ATFWD-daemon
+### Display
+service vendor.ppd /vendor/bin/mm-pp-dpps
     class late_start
     user system
     group system radio
@@ -258,6 +265,9 @@ service vendor.atfwd /vendor/bin/ATFWD-daemon
 
 service vendor.dataadpl /system/vendor/bin/adpl
     class main
+# QCOM prop
+service vendor.ssgqmigd /vendor/bin/ssgqmigd
+    class late_start
     user radio
     group radio oem_2901 diag usb net_admin
 
@@ -274,6 +284,14 @@ service vendor.port-bridge /system/vendor/bin/port-bridge
     user radio
     group radio system inet
     oneshot
+on property:init.svc.vendor.hwcomposer-2-1=stopped
+    stop vendor.ppd
+
+on property:init.svc.vendor.hwcomposer-2-1=running
+    start vendor.ppd
+
+on property:init.svc.vendor.hwcomposer-2-1=restarting
+    stop vendor.ppd
 
 service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2
     class main
