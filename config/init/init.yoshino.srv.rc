@@ -40,6 +40,52 @@ service vendor.hvdcp_opti /system/vendor/bin/hvdcp_opti
 
 # Charge service
 service charge_service /vendor/bin/charge_service
+# QCOM prop radio
+service vendor.port-bridge /system/vendor/bin/port-bridge
+    class main
+    user radio
+    group radio system inet
+    oneshot
+
+# QCOM prop radio
+service vendor.netmgrd /system/vendor/bin/netmgrd
+    class main
+
+# QCOM prop radio
+service vendor.dataqti /system/vendor/bin/qti
+    class main
+    user radio
+    group radio oem_2901 diag usb net_admin
+
+service vendor.dataadpl /system/vendor/bin/adpl
+    class main
+    user radio
+    group radio oem_2901 diag usb net_admin
+
+on property:vold.decrypt=trigger_restart_framework
+    start ril-daemon
+    start vendor.ipacm
+    start vendor.dataqti
+    start vendor.dataadpl
+    start vendor.netmgrd
+    start vendor.port-bridge
+
+# QCOM prop radio
+service vendor.atfwd /vendor/bin/ATFWD-daemon
+    class late_start
+    user system
+    group system radio
+    writepid /dev/cpuset/system-background/tasks
+
+### Peripheral Manager
+service per_mgr /vendor/bin/pm-service
+    class core
+    user system
+    group system
+    ioprio rt 4
+
+service per_proxy /vendor/bin/pm-proxy
+    class core
     user system
     # Add oem_2993 to the group of charge_service for access MiscTA.
     # Add wakelock to the group of charge_service for access "/sys/power/wake_lock" and "/sys/power/wake_unlock".
@@ -170,6 +216,27 @@ on property:init.svc.vendor.per_mgr=running
 
 on shutdown
     stop vendor.per_proxy
+    user root
+    group root
+    writepid /dev/cpuset/system-background/tasks
+
+### Thermal Manager
+service thermal-engine /system/vendor/bin/thermal-engine
+    class main
+    user root
+    socket thermal-send-client stream 0666 system system
+    socket thermal-recv-client stream 0660 system system
+    socket thermal-recv-passive-client stream 0666 system system
+    socket thermal-send-rule stream 0660 system system
+    group root oem_2993 oem_2929
+    writepid /dev/cpuset/system-background/tasks
+
+### ADSP FastRPC
+service adsprpcd /system/vendor/bin/adsprpcd
+   class main
+   user media
+   group media
+   writepid /dev/cpuset/system-background/tasks
 
 ### RADIO
 service dpmQmiMgr /system/vendor/bin/dpmQmiMgr
@@ -260,6 +327,7 @@ service modem_switcher /system/bin/sony-modem-switcher
     group root system oem_2993 cache
     disabled
     oneshot
+    writepid /dev/cpuset/system-background/tasks
 
 ### SSGQMIGD
 service vendor.ssgqmigd /vendor/bin/ssgqmigd
