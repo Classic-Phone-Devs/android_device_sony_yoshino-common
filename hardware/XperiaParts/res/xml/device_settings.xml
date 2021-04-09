@@ -14,6 +14,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
+            android:key="screen_density"
+            android:title="@string/density_category">
+
+        <Preference
+            android:icon="@drawable/cellphone_screenshot"
+            android:key="fulltime_4k"
+            android:summary="@string/fulltime_4k_summary"
+            android:title="@string/fulltime_4k" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
             android:key="g"
             android:title="@string/gesture">
 

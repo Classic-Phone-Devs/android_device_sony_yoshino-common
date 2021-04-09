@@ -29,6 +29,8 @@ import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
 
 import static com.yoshino.parts.Constants.*;
+import com.yoshino.parts.ShellUtils;
+import com.yoshino.parts.ShellUtils.CommandResult;
 
 public class DeviceSettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
@@ -52,6 +54,20 @@ public class DeviceSettingsFragment extends PreferenceFragment implements Prefer
         statusPref.setOnPreferenceClickListener(preference -> {
             preference.getContext().startActivity(new Intent()
                     .setClassName("com.sonymobile.customizationselector", "com.sonymobile.customizationselector.StatusActivity"));
+            return true;
+        });
+
+        Preference fulltime_4k = findPreference(FULLTIME_4K);
+        assert fulltime_4k != null;
+        fulltime_4k.setOnPreferenceClickListener(preference -> {
+            CommandResult current = ShellUtils.execCommand("wm density", false);
+            if(current.responseMsg.contains("Override")) {
+                ShellUtils.execCommand("wm density 480", false);
+                ShellUtils.execCommand("wm size 1080x1920", false);
+            } else {
+                ShellUtils.execCommand("wm density 801", false);
+                ShellUtils.execCommand("wm size 2160x3840", false);
+            }
             return true;
         });
 
