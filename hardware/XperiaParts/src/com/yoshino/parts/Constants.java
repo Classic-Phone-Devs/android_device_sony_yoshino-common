@@ -28,4 +28,6 @@ public class Constants {
 
     public static final String NS_SLOT = "ns_slot";
     public static final String NS_SERVICE = "ns_service";
+
+    public static final String FULLTIME_4K = "fulltime_4k";
 }

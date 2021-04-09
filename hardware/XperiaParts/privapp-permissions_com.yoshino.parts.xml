@@ -16,5 +16,6 @@
     <privapp-permissions package="com.yoshino.parts">
         <permission name="android.permission.RECEIVE_BOOT_COMPLETED" />
         <permission name="android.permission.WRITE_SETTINGS" />
+        <permission name="android.permission.WRITE_SECURE_SETTINGS" />
     </privapp-permissions>
 </permissions>

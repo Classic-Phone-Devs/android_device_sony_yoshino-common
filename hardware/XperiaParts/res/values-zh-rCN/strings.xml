@@ -23,4 +23,8 @@
     <string name="sim_slot_summary">选择你想要配置的卡槽\n已选卡槽:</string>
     <string name="ims_title">IMS特性</string>
     <string name="ims_summary">启用IMS, VoLTE, VoWiFi or WiFi calling <b>需要在原厂系统可用</b>.</string>
+
+    <string name="density_category">屏幕</string>
+    <string name="fulltime_4k">切换全局4k</string>
+    <string name="fulltime_4k_summary">需要重启以正常使用手势控制</string>
 </resources>
