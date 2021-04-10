@@ -35,8 +35,8 @@ public class MainService extends AccessibilityService {
     @Override
     protected boolean onKeyEvent(KeyEvent event) {
         int toApplyKeyCode = -1;
-        switch (event.getKeyCode()) {
-            if(event.getAction() == KeyEvent.ACTION_DOWN) {
+        if(event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (event.getKeyCode()) {
                 case KeyEvent.KEYCODE_FOCUS:
                     switch (mLightFunction) {
                         case "no_override":
