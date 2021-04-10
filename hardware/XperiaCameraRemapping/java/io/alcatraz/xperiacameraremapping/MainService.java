@@ -36,52 +36,54 @@ public class MainService extends AccessibilityService {
     protected boolean onKeyEvent(KeyEvent event) {
         int toApplyKeyCode = -1;
         switch (event.getKeyCode()) {
-            case KeyEvent.KEYCODE_FOCUS:
-                switch (mLightFunction) {
-                    case "no_override":
-                        return false;
-                    case "home":
-                        toApplyKeyCode = KeyEvent.KEYCODE_HOME;
-                        break;
-                    case "task_screen":
-                        toApplyKeyCode = KeyEvent.KEYCODE_MENU;
-                        break;
-                    case "back":
-                        toApplyKeyCode = KeyEvent.KEYCODE_BACK;
-                        break;
-                    case "touch_simulation":
-                        dispatchTouchEvent(mLightX, mLightY);
-                        return true;
-                    case "same_with_heavy_press":
-                        break;
-                }
+            if(event.getAction() == KeyEvent.ACTION_DOWN) {
+                case KeyEvent.KEYCODE_FOCUS:
+                    switch (mLightFunction) {
+                        case "no_override":
+                            return false;
+                        case "home":
+                            toApplyKeyCode = KeyEvent.KEYCODE_HOME;
+                            break;
+                        case "task_screen":
+                            toApplyKeyCode = KeyEvent.KEYCODE_MENU;
+                            break;
+                        case "back":
+                            toApplyKeyCode = KeyEvent.KEYCODE_BACK;
+                            break;
+                        case "touch_simulation":
+                            dispatchTouchEvent(mLightX, mLightY);
+                            return true;
+                        case "same_with_heavy_press":
+                            break;
+                    }
 
-                if (toApplyKeyCode != -1) {
-                    dispatchKeyEvent(toApplyKeyCode);
-                    return true;
-                }
-            case KeyEvent.KEYCODE_CAMERA:
-                switch (mHeavyFunction) {
-                    case "no_override":
-                        return false;
-                    case "home":
-                        toApplyKeyCode = KeyEvent.KEYCODE_HOME;
-                        break;
-                    case "task_screen":
-                        toApplyKeyCode = KeyEvent.KEYCODE_MENU;
-                        break;
-                    case "back":
-                        toApplyKeyCode = KeyEvent.KEYCODE_BACK;
-                        break;
-                    case "touch_simulation":
-                        dispatchTouchEvent(mHeavyX, mHeavyY);
+                    if (toApplyKeyCode != -1) {
+                        dispatchKeyEvent(toApplyKeyCode);
                         return true;
-                }
-                if (toApplyKeyCode != -1) {
-                    dispatchKeyEvent(toApplyKeyCode);
-                    return true;
-                }
-                break;
+                    }
+                case KeyEvent.KEYCODE_CAMERA:
+                    switch (mHeavyFunction) {
+                        case "no_override":
+                            return false;
+                        case "home":
+                            toApplyKeyCode = KeyEvent.KEYCODE_HOME;
+                            break;
+                        case "task_screen":
+                            toApplyKeyCode = KeyEvent.KEYCODE_MENU;
+                            break;
+                        case "back":
+                            toApplyKeyCode = KeyEvent.KEYCODE_BACK;
+                            break;
+                        case "touch_simulation":
+                            dispatchTouchEvent(mHeavyX, mHeavyY);
+                            return true;
+                    }
+                    if (toApplyKeyCode != -1) {
+                        dispatchKeyEvent(toApplyKeyCode);
+                        return true;
+                    }
+                    break;
+            }
         }
         return super.onKeyEvent(event);
     }
