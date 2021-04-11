@@ -321,6 +321,10 @@ on boot
 
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
+    # Smart Stamina mode
+    chown system system /sys/devices/virtual/input/clearpad/stamina_mode
+    chmod 0600 /sys/devices/virtual/input/clearpad/stamina_mode
+    restorecon /sys/devices/virtual/input/clearpad/stamina_mode
 
     # Tof sensor
     chown cameraserver camera /dev/i2c-8
