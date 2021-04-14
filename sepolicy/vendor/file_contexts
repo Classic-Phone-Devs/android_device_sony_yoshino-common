@@ -20,6 +20,7 @@
 /cache/modem(/.*)?                                              u:object_r:modemsw_cache_file:s0
 
 ### DATA
+/data/crashdata(/.*)?                                           u:object_r:crashdata_data_file:s0
 /data/vendor/crashdata(/.*)?                                    u:object_r:crash_vendor_data_file:s0
 /data/vendor/credmgr(/.*)?                                      u:object_r:credmgrd_vendor_data_file:s0
 /data/vendor/etc/wlan.*                                         u:object_r:wifi_vendor_data_file:s0
