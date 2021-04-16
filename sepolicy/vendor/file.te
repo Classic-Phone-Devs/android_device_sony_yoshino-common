@@ -29,6 +29,7 @@ type modemsw_cache_file, file_type;
 
 # data
 type bluetooth_vendor_data_file, file_type, data_file_type;
+type crashdata_data_file, file_type, data_file_type;
 type crash_vendor_data_file, file_type, data_file_type;
 type credmgrd_vendor_data_file, file_type, data_file_type;
 type fpc_vendor_data_file, file_type, data_file_type;
