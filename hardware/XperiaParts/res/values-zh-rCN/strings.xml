@@ -8,6 +8,8 @@
     <string name="gesture">手势</string>
     <string name="glove_mode">手套模式</string>
     <string name="glove_mode_summary">允许设备对戴手套的操作进行反应</string>
+    <string name="smart_stamina_mode">智能Stamina模式</string>
+    <string name="smart_stamina_summary">增加clearpad驱动扫描新输入事件的时间</string>
     <string name="network_switcher">网络选择器</string>
     <string name="status">状态</string>
     <string name="sony_modem_notification">常驻通知</string>
