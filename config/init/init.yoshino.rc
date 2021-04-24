@@ -419,6 +419,11 @@ on boot
     chmod 0600 /sys/devices/virtual/input/clearpad/glove
     restorecon /sys/devices/virtual/input/clearpad/glove
 
+    # Smart Stamina mode
+    chown system system /sys/devices/virtual/input/clearpad/stamina_mode
+    chmod 0600 /sys/devices/virtual/input/clearpad/stamina_mode
+    restorecon /sys/devices/virtual/input/clearpad/stamina_mode
+
     # Tof sensor
     chown cameraserver camera /dev/i2c-8
     chmod 666 /dev/i2c-8
@@ -563,6 +568,9 @@ on property:sys.boot_completed=1
     write /sys/class/block/mmcblk0/bdi/max_ratio 1
 
 # Touch
+on property:dev.bootcomplete=1 && property:vendor.smartstamina.touchreport=*
+   write /sys/devices/virtual/input/clearpad/stamina_mode ${vendor.smartstamina.touchreport}
+
 on property:dev.bootcomplete=1 && property:persist.sys.touch.glove_mode=*
     write /sys/devices/virtual/input/clearpad/glove ${persist.sys.touch.glove_mode}
 

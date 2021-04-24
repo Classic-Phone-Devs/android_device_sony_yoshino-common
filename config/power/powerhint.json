@@ -18,9 +18,8 @@
       "Values": [
         "1900800",
         "1555200",
-        "1512000",
         "1478400",
-        "1134000",
+        "1171200",
         "0"
       ],
       "ResetOnInit": true
@@ -86,7 +85,7 @@
       "Name": "TASchedtuneBoost",
       "Path": "/dev/stune/top-app/schedtune.boost",
       "Values": [
-        "50",
+        "30",
         "10"
       ],
       "ResetOnInit": true
@@ -134,6 +133,15 @@
         "100"
       ],
       "HoldFd": true
+    },
+    {
+      "Name": "UfsClkGateEnable",
+      "Path": "/sys/devices/platform/soc/1da4000.ufshc/clkgate_enable",
+      "Values": [
+        "0",
+        "1"
+      ],
+      "ResetOnInit": true
     },
     {
       "Name": "PowerHALMainState",
@@ -324,13 +332,13 @@
       "PowerHint": "INTERACTION",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
-      "Value": "1134000"
+      "Value": "1171200"
     },
     {
       "PowerHint": "INTERACTION",
       "Node": "TASchedtuneBoost",
       "Duration": 0,
-      "Value": "50"
+      "Value": "30"
     },
     {
       "PowerHint": "INTERACTION",
@@ -355,6 +363,12 @@
       "Node": "CPUBWMinFreq",
       "Duration": 0,
       "Value": "5195"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "UfsClkGateEnable",
+      "Duration": 200,
+      "Value": "0"
     },
     {
       "PowerHint": "LAUNCH",
@@ -405,6 +419,12 @@
       "Value": "13763"
     },
     {
+      "PowerHint": "LAUNCH",
+      "Node": "UfsClkGateEnable",
+      "Duration": 5000,
+      "Value": "0"
+    },
+    {
       "PowerHint": "CAMERA_LAUNCH",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 1000,
@@ -427,6 +447,12 @@
       "Node": "PMQoSCpuDmaLatency",
       "Duration": 1000,
       "Value": "44"
+    },
+    {
+      "PowerHint": "CAMERA_LAUNCH",
+      "Node": "UfsClkGateEnable",
+      "Duration": 1000,
+      "Value": "0"
     },
     {
       "PowerHint": "CAMERA_STREAMING",
