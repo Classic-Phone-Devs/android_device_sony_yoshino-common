@@ -57,3 +57,8 @@ PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/1da4000.ufshc/by-name
 PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/platform/soc/1da4000.ufshc/by-name/vendor
 $(call inherit-product, build/target/product/verity.mk)
 endif
+
+# PRODUCT_PROPERTY_OVERRIDES += \
+#     ro.secure=0    \
+#     ro.adb.secure=0    \
+#     ro.debuggable=1    \

@@ -1,2 +1,5 @@
 # DPM
 /system/bin/dpmd                                u:object_r:vendor_dpmd_exec:s0
+
+# Harmony
+/system/bin/hilogd                               u:object_r:hilogd_exec:s0

@@ -1,1 +1,2 @@
 cacao                                  u:object_r:cacaoserver_service:s0
+hilogd                                 u:object_r:hilogd_service:s0

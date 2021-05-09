@@ -1,0 +1,12 @@
+type hilogd, domain, coredomain;
+type hilogd_exec, exec_type, file_type, system_file_type;
+type hilogd_service, service_manager_type;
+
+permissive hilogd;
+
+init_daemon_domain(hilogd)
+
+binder_use(hilogd)
+binder_call(hilogd, binderservicedomain)
+binder_call(hilogd, appdomain)
+binder_service(hilogd)

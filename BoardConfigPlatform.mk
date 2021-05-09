@@ -54,6 +54,7 @@ BOARD_KERNEL_CMDLINE += androidboot.configfs=true
 BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a800000.dwc3
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += zram.backend=z3fold
+# BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 
 # See README_Xperia in Kernel Source
 BOARD_KERNEL_BASE        := 0x00000000
