@@ -188,6 +188,14 @@ service vendor.ppd /vendor/bin/mm-pp-dpps
     socket pps stream 0660 system system
     disabled
 
+### SONY MODEM SWITCHER
+service modem_switcher /system/bin/sony-modem-switcher
+    class main
+    user root
+    group root system oem_2993 cache
+    disabled
+    oneshot
+
 # QCOM prop
 service vendor.ssgqmigd /vendor/bin/ssgqmigd
     class late_start
